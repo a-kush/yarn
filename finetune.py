@@ -86,7 +86,7 @@ def main(args):
     )
 
     try:
-        train_dataset = load_dataset(args.dataset)
+        train_dataset = load_dataset(args.dataset, split='train[0:1000]') # --**
     except:
         train_dataset = load_from_disk(args.dataset)
     if isinstance(train_dataset, DatasetDict):
