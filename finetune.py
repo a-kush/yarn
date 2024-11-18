@@ -86,7 +86,14 @@ def main(args):
     )
 
     try:
-        train_dataset = load_dataset(args.dataset, split='train[0:1000]') # --**
+        train_dataset = load_dataset(args.dataset, split='train', streaming=True) # --**
+        subset = []
+        num_samples = 100
+        for i, example in enumerate(dataset):
+            if i >= num_samples:
+                break  # Stop after collecting the desired number of examples
+            subset.append(example)  # Add the example to your subset
+        train_dataset = subset
     except:
         train_dataset = load_from_disk(args.dataset)
     if isinstance(train_dataset, DatasetDict):
