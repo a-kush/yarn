@@ -94,7 +94,7 @@ def load_model(model, args):
         trust_remote_code=not args.custom_model,
         config=config,
         quantization_config=quantization_config,
-        use_flash_attention_2=args.flash_attention,
+        use_flash_attention_2=False,
     )
 
     return loaded
