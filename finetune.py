@@ -82,18 +82,18 @@ def main(args):
         args.model,
         torch_dtype=torch.bfloat16,
         config=config,
-        use_flash_attention_2=True
+        use_flash_attention_2=False
     )
 
     try:
         train_dataset = load_dataset(args.dataset, split='train', streaming=True) # --**
         subset = []
         num_samples = 100
-        for i, example in enumerate(train_dataset):
+        for i, example in tqdm(enumerate(train_dataset)):
             if i >= num_samples:
                 break  # Stop after collecting the desired number of examples
             subset.append(example)  # Add the example to your subset
-        train_dataset = subset
+        train_dataset = Dataset.from_list(subset)
     except:
         train_dataset = load_from_disk(args.dataset)
     if isinstance(train_dataset, DatasetDict):
