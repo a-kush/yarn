@@ -2,7 +2,7 @@ import argparse
 import copy
 import torch
 import os
-from datasets import load_dataset, load_from_disk, DatasetDict
+from datasets import load_dataset, load_from_disk, DatasetDict, Dataset
 from datetime import timedelta
 from torch.utils.data import DataLoader
 from accelerate import Accelerator
